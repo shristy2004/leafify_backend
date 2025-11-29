@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from keras.models import load_model
 from datetime import datetime
 import numpy as np
-
+import os
+mongo_uri=os.getenv("MONGO_URI")
 from db import predictions
 from utils.preprocess import preprocess_image
 
@@ -52,3 +53,4 @@ async def predict(file: UploadFile = File(...)):
         "confidence": confidence,
         "file_name": file.filename
     }
+
